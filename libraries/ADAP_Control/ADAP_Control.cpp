@@ -14,7 +14,6 @@
 #include "ADAP_Control.h"
 
 #include <AP_HAL/AP_HAL.h>
-#include <GCS_MAVLink/GCS.h>
 
 #include <stdio.h>
 
@@ -175,20 +174,19 @@ float ADAP_Control::update(uint16_t loop_rate_hz, float target_rate, float senso
     sigma = constrain_float(sigma, sigma_min, sigma_max);
 
     // Log Data to flash
-    AP_Logger::get_singleton()->Write(log_msg_name, 
-                                      "TimeUS,Dt,Atheta,Aomega,Asigma,Aeta,Axm,Ax,Ar,Axerr,AuL", "Qffffffffff",
-                                      now,
-                                      dt,
-                                      theta,
-                                      omega,
-                                      sigma,
-                                      eta,
-                                      degrees(x_m),
-                                      degrees(x),
-                                      degrees(r),
-                                      degrees(x_error),
-                                      degrees(u_lowpass));
- 
+    AP::logger().Write(log_msg_name, 
+                       "TimeUS,Dt,Atheta,Aomega,Asigma,Aeta,Axm,Ax,Ar,Axerr,AuL", "Qffffffffff",
+                       now,
+                       dt,
+                       theta,
+                       omega,
+                       sigma,
+                       eta,
+                       degrees(x_m),
+                       degrees(x),
+                       degrees(r),
+                       degrees(x_error),
+                       degrees(u_lowpass));
 
     return constrain_float(u_lowpass/u_limit, -1, 1);
 }

@@ -3,6 +3,7 @@
 #include <AP_Common/AP_Common.h>
 #include <AP_Math/AP_Math.h>
 #include <AP_Logger/AP_Logger.h>
+#include <GCS_MAVLink/GCS.h>
 #include <Filter/LowPassFilter2p.h>
 
 class ADAP_Control {
