@@ -1,0 +1,7 @@
+wp load init.txt
+module load graph
+mode guided
+
+#arm throttle
+#takeoff 10
+#mode auto
